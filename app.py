@@ -1,13 +1,3 @@
-"""WineDashboard: exploratory dashboard for the UCI Wine dataset.
-
-Single-file Streamlit app. Run with:
-
-    pip install streamlit pandas plotly scikit-learn
-    streamlit run app.py
-
-The dataset ships inside scikit-learn, so no CSV or network access is needed.
-If scikit-learn is missing, the app falls back to downloading the UCI CSV.
-"""
 
 import pandas as pd
 import plotly.express as px
@@ -32,6 +22,13 @@ FEATURE_NAMES = [
     "proline",
 ]
 CLASS_COL = "clase"
+# Dataset labels are numeric only; cultivar names follow the original PARVUS
+# source (Forina et al.) as cited in the literature, not UCI metadata.
+CLASS_LABELS = {
+    0: "Clase 0 (Barolo)",
+    1: "Clase 1 (Grignolino)",
+    2: "Clase 2 (Barbera)",
+}
 CHART_TYPES = ["Todos", "Histograma", "Dispersión", "Boxplot", "Correlación"]
 DEFAULT_VARIABLES = ["alcohol", "malic_acid", "flavanoids", "color_intensity", "proline"]
 
@@ -50,7 +47,7 @@ def load_wine_data() -> pd.DataFrame:
         # UCI file has no header; first column is the class (1, 2, 3).
         df = pd.read_csv(UCI_WINE_URL, header=None, names=[CLASS_COL, *FEATURE_NAMES])
         df[CLASS_COL] = df[CLASS_COL] - 1
-    df[CLASS_COL] = "Clase " + df[CLASS_COL].astype(str)
+    df[CLASS_COL] = df[CLASS_COL].map(CLASS_LABELS)
     return df
 
 
