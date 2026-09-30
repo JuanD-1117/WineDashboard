@@ -22,8 +22,8 @@ FEATURE_NAMES = [
     "proline",
 ]
 CLASS_COL = "clase"
-# Dataset labels are numeric only; cultivar names follow the original PARVUS
-# source (Forina et al.) as cited in the literature, not UCI metadata.
+
+#Los nombres son de la literatura no un metadato
 CLASS_LABELS = {
     0: "Clase 0 (Barolo)",
     1: "Clase 1 (Grignolino)",
