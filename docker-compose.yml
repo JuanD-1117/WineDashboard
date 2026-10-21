@@ -1,0 +1,16 @@
+# WineDashboard: un solo servicio Streamlit.
+#
+#   ./instalar.sh            (o: docker compose up -d --build)
+#
+# El dataset viene dentro de scikit-learn, así que la app no necesita base de datos ni red.
+
+name: winedashboard
+
+services:
+  app:
+    build: .
+    image: winedashboard-app:latest
+    container_name: winedashboard-app
+    restart: unless-stopped
+    ports:
+      - "${WINE_PORT:-8501}:8501"

@@ -1,4 +1,6 @@
-streamlit>=1.49
-pandas>=2.2
-plotly>=6.0
-scikit-learn>=1.5
+# Versiones exactas probadas con Python 3.12 (la imagen de Docker). Requieren Python >= 3.12.
+streamlit==1.66.0
+pandas==3.0.6
+plotly==7.1.0
+scikit-learn==1.9.1
+numpy==2.5.4
